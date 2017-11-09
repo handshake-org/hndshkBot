@@ -1,0 +1,19 @@
+{
+  "name": "hndshkbot",
+  "version": "1.0.0",
+  "description": "IRC bot for Project Handshake airdrop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hschoenburg/hndshkBot.git"
+  },
+  "author": "Hans Schoenburg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hschoenburg/hndshkBot/issues"
+  },
+  "homepage": "https://github.com/hschoenburg/hndshkBot#readme"
+}
