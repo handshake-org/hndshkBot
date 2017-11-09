@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/hschoenburg/hndshkBot/issues"
   },
-  "homepage": "https://github.com/hschoenburg/hndshkBot#readme"
+  "homepage": "https://github.com/hschoenburg/hndshkBot#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "irc": "^0.5.2"
+  }
 }
