@@ -2,7 +2,7 @@ var dotenv = require('dotenv');
 dotenv.config();
 
 var config = {
-    channels: [process.env.IRC_CHANNEL],
+    channel: process.env.IRC_CHANNEL,
     server: "chat.freenode.net",
     botName: process.env.BOTNAME,
     password: process.env.PASSWORD
