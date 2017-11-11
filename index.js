@@ -11,7 +11,7 @@ var config = {
 var irc = require('irc');
 
 var bot = new irc.Client(config.server, config.botName, {
-  channels: config.channels
+  channels: [config.channel]
 })
 
 var user = {};
@@ -23,11 +23,12 @@ function grantTokens(nick) {
 
 function verifyUser() {
   bot.say(user.nick, "We are checking your nick now")
-  if(user.registered > new Date("2017 05 09")) {
-    bot.say(user.nick, "Your nick is valid! get some tokens")
+  if(user.registered < new Date("2017 05 09")) {
+    bot.say(user.nick, "Your nick is valid! You get tokens Now!")
     grantTokens(user.nick);
   } else {
     bot.say(user.nick, "Sorry no tokens for you")
+    bot.say(user.nick, "According to nickServ info, you registered " + user.nick + " on " + user.registered)
   }
   resetUser();
 }
@@ -49,15 +50,20 @@ bot.addListener('notice', function(nick,to, text, notice) {
     case "Flags":
       if(user.nick && user.registered) {
         verifyUser();
+      } else {
+        bot.say(user.nick, "Sorry, something went wrong, please try asking again")
       }
       break
   }
 })
 
 bot.addListener('pm', function(from, message) {
-  bot.say(from, "Hi, do you want some HandShake Tokens?")
-
-  bot.send('/msg nickserv info ' + from)
+  if(!!message.match(/please/)) {
+    bot.say(from, "Your account must be over 6 months old.")
+    bot.send('/msg nickserv info ' + from)
+  } else {
+    bot.say(from, "Hi, do you want some HandShake Tokens? If so, just say 'please'")
+  }
 })
 
 bot.addListener('error', function(msg) {
@@ -65,13 +71,16 @@ bot.addListener('error', function(msg) {
 })
 
 bot.addListener('registered', function(message) {
+  bot.say(config.channel, "Im here!");
   console.log('$$$$$ REGISTERED')
 })
 
 bot.addListener('join', function(channel, who) {
   // Welcome user to channel
-  bot.say(channel, "Welcome " + who + " to the Project Handshake Channel. Want Some Tokens?")
+  if(who != config.botName) {
+    bot.say(channel, "Welcome " + who + " to the Project Handshake Channel. Do you want some tokens? If so, just send me a private message, and remember to say 'please'")
+  }
 })
 
-bot.join(config.channel, config.password)
+bot.join(config.channel, config.password);
 
