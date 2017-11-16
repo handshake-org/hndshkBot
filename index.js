@@ -1,23 +1,60 @@
+'use strict'
+
 var dotenv = require('dotenv');
+var winston = require('winston');
+
+var irc = require('./submodules/irc/lib/irc');
+
 dotenv.config();
 
-var config = {
-    channel: process.env.IRC_CHANNEL,
-    server: "chat.freenode.net",
-    botName: process.env.BOTNAME,
-    password: process.env.PASSWORD
-};
-
-var irc = require('irc');
-
-var bot = new irc.Client(config.server, config.botName, {
-  channels: [config.channel]
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL,
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.File({ filename: 'error.log', level: 'error'}),
+    new winston.transports.File({ filename: 'combined.log',})
+  ]
 })
 
+if(process.env.NODE_ENV != 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
+  }))
+}
+
+
+var bot = new irc.Client(process.env.SERVER, process.env.BOTNAME, {
+  channels: [process.env.CHANNEL],
+  autoConnect: false,
+  autoRejoin: false,
+  sasl: true,
+  password: process.env.PASSWORD,
+  realName: 'Project Handshake Test Bot',
+  userName: process.env.BOTNAME,
+  showErrors: true,
+  debug: true,
+
+})
+
+
+bot.connect(1, function(data) {
+  // logger.info("Connecting to Server data: "+ JSON.stringify(data))
+  //bot.send("/msg Nickserv identify " + process.env.PASSWORD)
+  logger.info("%%%%%%%%%%%%%%%%%%% Connected")
+
+  /*
+    bot.join(process.env.CHANNEL, '', function() {
+      logger.info("attempting to join channel " + process.env.CHANNEL)
+    })
+  */
+})
+
+
+  /*
 var user = {};
 
 function grantTokens(nick) {
-  console.log('granting tokens to ' + nick)
+  logger.log('granting tokens to ' + nick)
   // omg send tokens 
 }
 
@@ -65,22 +102,23 @@ bot.addListener('pm', function(from, message) {
     bot.say(from, "Hi, do you want some HandShake Tokens? If so, just say 'please'")
   }
 })
+*/
 
 bot.addListener('error', function(msg) {
-  console.log("Error " + JSON.stringify(msg));
+  logger.error(JSON.stringify(msg));
 })
 
 bot.addListener('registered', function(message) {
-  bot.say(config.channel, "Im here!");
-  console.log('$$$$$ REGISTERED')
+  //bot.say(process.env.CHANNEL, "Im here!");
+  logger.info('$$$$$ REGISTERED')
 })
 
+  /*
 bot.addListener('join', function(channel, who) {
   // Welcome user to channel
-  if(who != config.botName) {
+  if(who != process.env.botName) {
     bot.say(channel, "Welcome " + who + " to the Project Handshake Channel. Do you want some tokens? If so, just send me a private message, and remember to say 'please'")
   }
 })
-
-bot.join(config.channel, config.password);
+*/
 

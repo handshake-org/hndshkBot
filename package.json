@@ -18,5 +18,10 @@
   "homepage": "https://github.com/hschoenburg/hndshkBot#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "sequelize": "^3.30.4",
+    "winston": "^3.0.0-rc1"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0"
   }
 }
