@@ -4,7 +4,7 @@
   "description": "IRC bot for Project Handshake airdrop",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test jasmine"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "homepage": "https://github.com/hschoenburg/hndshkBot#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
-    "sequelize": "^3.30.4",
+    "pg": "^7.4.0",
     "winston": "^3.0.0-rc1"
   },
   "devDependencies": {
