@@ -6,7 +6,7 @@ const dropAll = "DROP TABLE IF EXISTS users";
 
 const createUserTable = "CREATE TABLE users (name varchar(60), email varchar(60), password varchar(255), created_at timestamp default current_timestamp, updated_at timestamp)";
 
-const createFreeNodeTable = "CREATE TABLE freenodes (user_id integer, account varchar(60), nicks text[], registered timestamp, code varchar(255), verified_at timestamp, created_at timestamp default current_timestamp, updated_at timestamp)"
+const createFreeNodeTable = "CREATE TABLE freenodes (user_id integer, account varchar(60), nicks text[], registered_at timestamp, code varchar(255), verified_at timestamp, created_at timestamp default current_timestamp, updated_at timestamp)"
 
 module.exports = {
   tearDownRebuild: () => {

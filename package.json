@@ -18,6 +18,7 @@
   "homepage": "https://github.com/hschoenburg/hndshkBot#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "joi": "^13.0.2",
     "pg": "^7.4.0",
     "winston": "^3.0.0-rc1"
   },
