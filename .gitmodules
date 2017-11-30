@@ -1,3 +1,0 @@
-[submodule "submodules/irc"]
-	path = submodules/irc
-	url = https://github.com/hschoenburg/node-irc.git
