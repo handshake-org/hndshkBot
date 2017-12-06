@@ -1,18 +1,16 @@
 'use strict'
-var dotenv = require('dotenv').config();
-var logger = require('./logger');
+var logger = require('./logger')
 
 var bot = require('./lib/bot')
 
 logger.info('Hello! Attempting to connect to chat.freenode.net')
 
-bot.init(()=>{
+bot.init(() => {
   logger.info('Connected and Ready')
 })
 
-
 /*
- * User validates true - 
+ * User validates true -
  * check for existing account
  * lookup/save user, lookup/save freenode
  * respond with code
@@ -20,6 +18,5 @@ bot.init(()=>{
  * User requests code -
  * lookup/user, lookup freenode,
  * respond with code
- 
 
 */
