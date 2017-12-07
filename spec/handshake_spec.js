@@ -2,8 +2,7 @@ var handshake = require('../lib/handshake')
 
 //var tempValidCode ='/NJs8fy0kqiVKP1+nMPHVB3K0MWX2Pnc/reEZ959Xz8Wvtyu1DyrrxSj8r+tg72c'
 //var tempValidCode = '1zCkdm1XT22lM6Qup3xqGwV3vqfkmernUfJYXWKPzE2ToQIJ2kaZvFm+Osu8tUaY'
-var tempValidCode = 'N2usvlLE8PNJQC9SwM+lFaiadt+o4KBkbu16ygqKjCyWlw9pexs4lwUdpQ1jOVh4'
-
+var tempValidCode = "/vEg6gopN+zkQD5pEUIa5sYHt9BpS+mXNzqZJ3TLP+8tpSEVO+CNjjWIoVtgBIPL"
 
 describe('redeeming a qualification with the  HANDSHAKEAPI', () => {
 
@@ -20,17 +19,17 @@ describe('redeeming a qualification with the  HANDSHAKEAPI', () => {
     })
   })
 
-  var valid = {
-    code: tempValidCode,
-    identifier: 'doEsntmatterherR'
+  var freenodeAccount= {
+    account: 'doEsntmatterhere', nick: "my real nick", registered: Date.now()
   }
 
 
   it('successfully POSTS a code and identifier to the API', (done) => {
-    handshake.redeemCodeForUser(valid.code, valid.identifier)
+    handshake.redeemCodeForUser(tempValidCode, freenodeAccount)
     .then(result => {
-      expect(result.message).toEqual("success")
-      expect(result.identifier).toEqual(valid.identifier.toLowerCase())
+      console.log(result)
+      expect(result.message).toContain("successfully")
+      expect(result.identifier).toEqual(freenodeAccount.account.toLowerCase())
       expect(result.error).toEqual(false)
       done()
     }).catch(err => {
