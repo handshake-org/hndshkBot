@@ -26,5 +26,23 @@
   },
   "devDependencies": {
     "jasmine": "^2.8.0"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "xit",
+      "expect",
+      "beforeAll",
+      "jasmine",
+      "spyOn",
+      "Headers",
+      "fetch"
+    ]
   }
 }

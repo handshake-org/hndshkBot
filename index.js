@@ -1,6 +1,8 @@
 'use strict'
 var logger = require('./logger')
 
+require('dotenv').config()
+
 var bot = require('./lib/bot')
 
 logger.info('Hello! Attempting to connect to chat.freenode.net')
