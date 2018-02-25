@@ -4,7 +4,8 @@
   "description": "IRC bot for Project Handshake airdrop",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jasmine"
+    "test": "NODE_ENV=test jasmine",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
