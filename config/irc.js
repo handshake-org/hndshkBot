@@ -1,5 +1,5 @@
 module.exports = {
-  CHANNEL: '#handshake',
+  CHANNEL: '#handshakeisfun',
   SERVER: 'chat.freenode.net',
   PORT: 6667,
   TLS: false,
